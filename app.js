@@ -1,28 +1,39 @@
-// const validator = require('validator').default
 const chalk = require('chalk')
+const yargs = require('yargs')
 const { getNotes } = require('./notes')
 
-// const myNotes = getNotes()
-const command = process.argv[2]
+// Add new note
+yargs.command({
+    command: "add",
+    describe: "Add a new note",
+    handler: () => {
+        console.log(chalk.blueBright("Adding note..."))
+    }
+})
 
-if (command === "add") {
-    console.log(chalk.blueBright("Adding notes..."))
-}
-else if (command === "remove") {
-    console.log(chalk.redBright("Removing notes..."))
-}
-else if (command === undefined) {
-    const myNotes = getNotes()
-    console.log(chalk.blueBright("Loading your notes...\n"))
-    console.log(myNotes)
-}
-else {
-    console.log(chalk.redBright("Invalid argument!"))
-}
+// List all notes
+yargs.command({
+    command: "list",
+    describe: "List out all notes",
+    handler: () => {
+        console.log(chalk.greenBright("Loading..."));
+    }
+})
 
+// Read a note
+yargs.command({
+    command: "read",
+    describe: "Display a note",
+    handler: () => {
+        console.log(chalk.greenBright("Loading..."));
+    }
+})
 
-// console.log(chalk.bold("Hello, I am your NoteBot. I keep track of your notes here ~"))
-// console.log(chalk.blueBright("Loading your notes...\n"))
-// console.log(myNotes)
-// console.log(chalk.green.inverse("DONE!"))
-// console.log(validator.isEmail('hi@hi.com'))
+// Remove a note
+yargs.command({
+    command: "remove",
+    describe: "Remove a note",
+    hadnler: () => {
+        console.log(chalk.red("Removing note..."));
+    }
+})
