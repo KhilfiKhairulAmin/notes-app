@@ -19,7 +19,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        console.log(chalk.blueBright('Adding'), chalk.blueBright.italic(`${argv.title}...`))
+        console.log(chalk.blueBright(`Adding ${argv.title}...`))
         console.log(chalk.dim(`Title: ${argv.title}\nDescription: ${argv.description}`));
     }
 })
