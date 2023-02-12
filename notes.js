@@ -9,17 +9,27 @@ const addNote = function (title, content) {
     // Load notes
     const notes = loadNotes()
 
-    const duplicateTitle = notes.filter(function (note) {
-        return note.title === title
-    })
+    // Handle duplicate title and find insertion index to keep data sorted (ascending order)
+    // This is a binary search implementation, where two pointers are used. Go and search if you don't know what to imagine with this code
+    let l = 0, r = notes.length - 1
+    while (l <= r) {
+        const mid = Math.floor((l + r) / 2)
 
-    if (duplicateTitle.length !== 0) {
-        console.log(chalk.yellow('Note title already exists. Choose a new name for this one.'))
-        return
+        if (notes[mid].title === title) {
+            console.log(chalk.yellow('Note title already exists. Choose a new name for this one.'))
+            return
+        }
+
+        else if (notes[mid].title > title) {
+            r = mid - 1
+        }
+        else {
+            l = mid + 1
+        }
     }
     
-    // Add new note
-    notes.push({
+    // Add new note at
+    notes.splice(l, 0, {
         title,
         body: content
     })
