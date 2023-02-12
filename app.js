@@ -10,16 +10,18 @@ yargs.command({
         title: {
             describe: 'Note title',
             demandOption: true,
-            type: 'string'
+            type: 'string',
+            alias: 't'
         },
-        description: {
+        content: {
             describe: 'Note content',
             demandOption: true,
-            type: 'string'
+            type: 'string',
+            alias: 'c'
         }
     },
     handler: function (argv) {
-        notes.addNote(argv.title, argv.description)
+        notes.addNote(argv.title, argv.content)
     }
 })
 

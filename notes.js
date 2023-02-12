@@ -1,4 +1,5 @@
 const { readFileSync, writeFileSync } = require('fs')
+const chalk = require('chalk')
 
 const getNotes = function () {
     console.log('Loading your notes...');
@@ -7,6 +8,15 @@ const getNotes = function () {
 const addNote = function (title, content) {
     // Load notes
     const notes = loadNotes()
+
+    const duplicateTitle = notes.filter(function (note) {
+        return note.title === title
+    })
+
+    if (duplicateTitle.length !== 0) {
+        console.log(chalk.yellow('Note title already exists. Choose a new name for this one.'))
+        return
+    }
     
     // Add new note
     notes.push({
@@ -16,6 +26,8 @@ const addNote = function (title, content) {
 
     // Save note
     saveNotes(notes)
+
+    console.log(chalk.greenBright('Note added successfully!'))
 }
 
 const saveNotes = function (notes) {
