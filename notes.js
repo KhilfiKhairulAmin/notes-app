@@ -10,6 +10,7 @@ const addNote = function (title, content) {
     const notes = loadNotes()
 
     // Handle duplicate title and find insertion index to keep data sorted (ascending order)
+    // This is a binary search implementation, where two pointers are used. Go and search if you don't know what to imagine with this code
     let l = 0, r = notes.length - 1
     while (l <= r) {
         const mid = Math.floor((l + r) / 2)
