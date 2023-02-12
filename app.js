@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const yargs = require('yargs')
-const { getNotes } = require('./notes')
+const notes = require('./notes')
 
 // Add new note
 yargs.command({
@@ -10,17 +10,18 @@ yargs.command({
         title: {
             describe: 'Note title',
             demandOption: true,
-            type: 'string'
+            type: 'string',
+            alias: 't'
         },
-        description: {
+        content: {
             describe: 'Note content',
             demandOption: true,
-            type: 'string'
+            type: 'string',
+            alias: 'c'
         }
     },
     handler: function (argv) {
-        console.log(chalk.blueBright(`Adding ${argv.title}...`))
-        console.log(chalk.dim(`Title: ${argv.title}\nDescription: ${argv.description}`));
+        notes.addNote(argv.title, argv.content)
     }
 })
 
