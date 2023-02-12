@@ -9,14 +9,8 @@ const addNote = function (title, content) {
     // Load notes
     const notes = loadNotes()
 
-    const duplicateTitle = notes.filter(function (note) {
-        return note.title === title
-    })
-
-    if (duplicateTitle.length !== 0) {
-        console.log(chalk.yellow('Note title already exists. Choose a new name for this one.'))
-        return
-    }
+    // Handle duplicate title
+    
     
     // Add new note
     notes.push({
