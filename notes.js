@@ -9,11 +9,26 @@ const addNote = function (title, content) {
     // Load notes
     const notes = loadNotes()
 
-    // Handle duplicate title
+    // Handle duplicate title and find insertion index to keep data sorted (ascending order)
+    let l = 0, r = notes.length - 1
+    while (l <= r) {
+        const mid = Math.floor((l + r) / 2)
+
+        if (notes[mid].title === title) {
+            console.log(chalk.yellow('Note title already exists. Choose a new name for this one.'))
+            return
+        }
+
+        else if (notes[mid].title > title) {
+            r = mid - 1
+        }
+        else {
+            l = mid + 1
+        }
+    }
     
-    
-    // Add new note
-    notes.push({
+    // Add new note at
+    notes.splice(l, 0, {
         title,
         body: content
     })

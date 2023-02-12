@@ -21,7 +21,10 @@ yargs.command({
         }
     },
     handler: function (argv) {
+        const start = process.hrtime.bigint()
         notes.addNote(argv.title, argv.content)
+        const end = process.hrtime.bigint()
+        console.log(chalk.bold(`Runtime: ${end - start}ns`))
     }
 })
 
