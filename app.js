@@ -21,10 +21,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        const start = process.hrtime.bigint()
         notes.addNote(argv.title, argv.content)
-        const end = process.hrtime.bigint()
-        console.log(chalk.bold(`Runtime: ${end - start}`));
     }
 })
 
@@ -51,8 +48,16 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: () => {
-        console.log(chalk.redBright('Removing note...'));
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string',
+            alias: 't'
+        }
+    },
+    handler: (argv) => {
+        notes.removeNote(argv.title)
     }
 })
 
