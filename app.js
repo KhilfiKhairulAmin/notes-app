@@ -48,8 +48,16 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: () => {
-        console.log(chalk.redBright('Removing note...'));
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string',
+            alias: 't'
+        }
+    },
+    handler: (argv) => {
+        notes.removeNote(argv.title)
     }
 })
 
