@@ -30,7 +30,7 @@ yargs.command({
     command: 'list',
     describe: 'List out all notes',
     handler: () => {
-        console.log(chalk.greenBright('Loading...'));
+        notes.getNotes()
     }
 })
 
