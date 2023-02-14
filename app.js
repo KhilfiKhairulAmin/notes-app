@@ -20,9 +20,7 @@ yargs.command({
             alias: 'c'
         }
     },
-    handler: function (argv) {
-        notes.addNote(argv.title, argv.content)
-    }
+    handler: (argv) => notes.addNote(argv.title, argv.content)
 })
 
 // List all notes
@@ -56,9 +54,7 @@ yargs.command({
             alias: 't'
         }
     },
-    handler: (argv) => {
-        notes.removeNote(argv.title)
-    }
+    handler: (argv) => notes.removeNote(argv.title)
 })
 
 yargs.parse()
