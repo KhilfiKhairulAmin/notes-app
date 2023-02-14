@@ -2,7 +2,9 @@ const { readFileSync, writeFileSync } = require('fs')
 const chalk = require('chalk')
 
 
-const getNotes = () => console.log('Loading your notes...');
+const getNotes = () => {
+    console.log('Loading your notes...')
+}
 
 
 /**
