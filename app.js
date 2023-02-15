@@ -20,7 +20,7 @@ yargs.command({
             alias: 'c'
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         notes.addNote(argv.title, argv.content)
     }
 })
@@ -38,7 +38,7 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Display a note',
-    handler: () => {
+    handler() {
         console.log(chalk.greenBright('Loading...\n'))
         console.log(chalk.bold('Your note\n'), getNotes())
     }
@@ -56,7 +56,7 @@ yargs.command({
             alias: 't'
         }
     },
-    handler: (argv) => {
+    handler(argv) {
         notes.removeNote(argv.title)
     }
 })

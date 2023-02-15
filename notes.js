@@ -10,13 +10,14 @@ const listNotes = () => {
     notes.forEach((note) => console.log('>', note.title))
 }
 
+
 /**
  * Add a new note and save it
  * @param {String} title Title of note
  * @param {String} content Content of note
  * @returns 
  */
-const addNote = function (title, content) {
+const addNote = (title, content) => {
     // Load notes
     const notes = loadNotes()
 
@@ -56,7 +57,7 @@ const addNote = function (title, content) {
  * @param {String} title Title of note
  * @returns 
  */
-const removeNote = function (title) {
+const removeNote = (title) => {
     const notes = loadNotes()
 
     // Search for title using binary search
@@ -89,16 +90,13 @@ const removeNote = function (title) {
  * Save notes in `notes.json` _(data source file)_
  * @param {Array} notes Notes array
  */
-const saveNotes = function (notes) {
-    const dataJSON = JSON.stringify(notes)
-    writeFileSync('notes.json', dataJSON)
-}
+const saveNotes = (notes) => writeFileSync('notes.json', JSON.stringify(notes));
 
 /**
  * Load notes from `notes.json` _(data source file)_
  * @returns {Array} Notes array
  */
-const loadNotes = function () {
+const loadNotes = () => {
     try {
         const dataBuffer = readFileSync('notes.json')
         const dataJSON = dataBuffer.toString()
