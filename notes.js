@@ -2,14 +2,16 @@ const { readFileSync, writeFileSync } = require('fs')
 const chalk = require('chalk')
 
 /**
- * List all notes
+ * List out note titles based on the `filter` if given. If not given, list out *all* note titles.
+ * @param {String} filter Condition of title
+ * @returns 
  */
 const listNotes = (filter) => {
     let notes = loadNotes(), emptyMsg = 'You don\'t have a note yet currently. Create one by using the command `add`'
-    // List based on filter if filter is provided
-    if (filter) {
+    // Filter list if `filter` is provided
+    if (filter !== undefined) {
         notes = filterNotes(notes, filter)
-        emptyMsg = 'No notes found'
+        emptyMsg = 'No similar notes found.'
     }
 
     if (notes.length === 0) {
@@ -17,10 +19,16 @@ const listNotes = (filter) => {
         return
     }
 
-    console.log(chalk.bold.blueBright('Your Notes List'));
+    console.log(chalk.bold.blueBright('\nYour Notes List'));
     notes.forEach((note) => console.log('>', note.title))
 }
 
+/**
+ * Filter note titles based on the given `filter`
+ * @param {Array} notes Notes
+ * @param {String} filter Condition of title
+ * @returns {Array} Filtered Notes
+ */
 const filterNotes = (notes, filter) => {
     const searchValue = filter.trim().toLowerCase();
     const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(searchValue));

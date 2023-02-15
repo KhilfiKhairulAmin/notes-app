@@ -32,7 +32,8 @@ yargs.command({
     builder: {
         filter: {
             describe: 'Filter the notes listed',
-            type: 'string'
+            type: 'string',
+            alias: 'f'
         }
     },
     handler(argv) {
