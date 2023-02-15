@@ -106,6 +106,31 @@ const loadNotes = () => {
     }
 }
 
+const readNote = (title) => {
+    const notes = loadNotes()
+
+    let l = 0, r = notes.length
+    while (l <= r) {
+        const mid = Math.floor((l + r) / 2)
+
+        if (notes[mid].title === title) {
+            // Title is found, read the note
+            const note = notes[mid]
+            console.log(chalk.blueBright(note.title));
+            console.log(note.body);
+        }
+
+        else if (notes[mid].title > title) {
+            r = mid - 1
+        }
+        else {
+            l = mid + 1
+        }
+    }
+
+    console.log(chalk.yellow('Note title does not exist.'));
+}
+
 module.exports = {
     addNote,
     removeNote,
