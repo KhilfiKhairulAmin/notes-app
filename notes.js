@@ -4,12 +4,35 @@ const chalk = require('chalk')
 /**
  * List all notes
  */
-const listNotes = () => {
+const listNotes = (filter) => {
+    // List based on filter if filter is provided
+    if (filter) {
+        const notes = filterNotes(filter)
+
+        if (notes.length === 0) {
+            console.log(chalk.yellow('No similar notes found.'));
+        }
+
+        return
+    }
+
+    // List all if filter is not provided
     const notes = loadNotes()
+
+    if (notes.length === 0) {
+        console.log(chalk.yellow('You don\'t have a note yet currently. Create one by using the command `add`'));
+        return
+    }
+
     console.log(chalk.bold.blueBright('Your Notes List'));
     notes.forEach((note) => console.log('>', note.title))
 }
 
+const filterNotes = (filter) => {
+    const searchValue = filter.trim().toLowerCase();
+    const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(searchValue));
+    return filteredNotes
+}
 
 /**
  * Add a new note and save it
