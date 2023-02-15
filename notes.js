@@ -144,10 +144,10 @@ const readNote = (title) => {
 
         if (notes[mid].title === title) {
             // Title is found, read the note
-            console.log(chalk.green('Loading'));
             const note = notes[mid]
             console.log(chalk.bold.blue('\n>', note.title));
             console.log(note.body);
+            console.log('\n');
             return
         }
 
