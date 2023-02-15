@@ -106,8 +106,41 @@ const loadNotes = () => {
     }
 }
 
+/**
+ * Load and print title and content of note
+ * @param {String} title Title of note
+ * @returns 
+ */
+const readNote = (title) => {
+    const notes = loadNotes()
+
+    let l = 0, r = notes.length
+    while (l <= r) {
+        const mid = Math.floor((l + r) / 2)
+
+        if (notes[mid].title === title) {
+            // Title is found, read the note
+            console.log(chalk.green('Loading'));
+            const note = notes[mid]
+            console.log(chalk.bold.blue('\n>', note.title));
+            console.log(note.body);
+            return
+        }
+
+        else if (notes[mid].title > title) {
+            r = mid - 1
+        }
+        else {
+            l = mid + 1
+        }
+    }
+
+    console.log(chalk.yellow('Note title does not exist.'));
+}
+
 module.exports = {
     addNote,
     removeNote,
-    listNotes
+    listNotes,
+    readNote
 }
