@@ -30,7 +30,7 @@ yargs.command({
     command: 'list',
     describe: 'List out all notes',
     handler: () => {
-        notes.getNotes()
+        notes.listNotes()
     }
 })
 

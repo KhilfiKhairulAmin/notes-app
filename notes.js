@@ -1,13 +1,13 @@
 const { readFileSync, writeFileSync } = require('fs')
 const chalk = require('chalk')
 
-
-const getNotes = function () {
-    console.log(chalk.bold('Your Amazing Notes List'));
+/**
+ * List all notes
+ */
+const listNotes = () => {
     const notes = loadNotes()
-    notes.forEach(function (note) {
-        console.log('>', note.title);
-    })
+    console.log(chalk.bold.blueBright('Your Notes List'));
+    notes.forEach((note) => console.log('>', note.title))
 }
 
 /**
@@ -111,5 +111,5 @@ const loadNotes = function () {
 module.exports = {
     addNote,
     removeNote,
-    getNotes
+    listNotes
 }
