@@ -5,25 +5,15 @@ const chalk = require('chalk')
  * List all notes
  */
 const listNotes = (filter) => {
+    let notes = loadNotes(), emptyMsg = 'You don\'t have a note yet currently. Create one by using the command `add`'
     // List based on filter if filter is provided
     if (filter) {
-        const notes = filterNotes(filter)
-
-        if (notes.length === 0) {
-            console.log(chalk.yellow('No similar notes found.'));
-        }
-
-        console.log(chalk.bold.blueBright('Similar Notes Found'));
-        notes.forEach((note) => console.log('>', note.title))
-
-        return
+        notes = filterNotes(notes, filter)
+        emptyMsg = 'No notes found'
     }
 
-    // List all if filter is not provided
-    const notes = loadNotes()
-
     if (notes.length === 0) {
-        console.log(chalk.yellow('You don\'t have a note yet currently. Create one by using the command `add`'));
+        console.log(chalk.yellow(emptyMsg));
         return
     }
 
@@ -31,7 +21,7 @@ const listNotes = (filter) => {
     notes.forEach((note) => console.log('>', note.title))
 }
 
-const filterNotes = (filter) => {
+const filterNotes = (notes, filter) => {
     const searchValue = filter.trim().toLowerCase();
     const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(searchValue));
     return filteredNotes
@@ -162,16 +152,6 @@ const readNote = (title) => {
     }
 
     console.log(chalk.yellow('Note title does not exist.'));
-
-    const similarNotes = filterNotes(title)
-
-    if (similarNotes.length === 0) {
-        return
-    }
-
-    console.log('Similar notes:');
-    similarNotes.forEach((note) => console.log('>', note.title))
-
 }
 
 module.exports = {

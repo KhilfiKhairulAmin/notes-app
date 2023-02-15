@@ -29,8 +29,14 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'List out all notes',
-    handler() {
-        notes.listNotes()
+    builder: {
+        filter: {
+            describe: 'Filter the notes listed',
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notes.listNotes(argv.filter)
     }
 })
 
