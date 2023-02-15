@@ -115,9 +115,11 @@ const readNote = (title) => {
 
         if (notes[mid].title === title) {
             // Title is found, read the note
+            console.log(chalk.green('Loading'));
             const note = notes[mid]
-            console.log(chalk.blueBright(note.title));
+            console.log(chalk.bold.blue('\n>', note.title));
             console.log(note.body);
+            return
         }
 
         else if (notes[mid].title > title) {
@@ -134,5 +136,6 @@ const readNote = (title) => {
 module.exports = {
     addNote,
     removeNote,
-    listNotes
+    listNotes,
+    readNote
 }
