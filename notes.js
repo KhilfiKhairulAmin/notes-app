@@ -106,6 +106,11 @@ const loadNotes = () => {
     }
 }
 
+/**
+ * Load and print title and content of note
+ * @param {String} title Title of note
+ * @returns 
+ */
 const readNote = (title) => {
     const notes = loadNotes()
 
