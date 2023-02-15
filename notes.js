@@ -13,6 +13,9 @@ const listNotes = (filter) => {
             console.log(chalk.yellow('No similar notes found.'));
         }
 
+        console.log(chalk.bold.blueBright('Similar Notes Found'));
+        notes.forEach((note) => console.log('>', note.title))
+
         return
     }
 
@@ -159,6 +162,16 @@ const readNote = (title) => {
     }
 
     console.log(chalk.yellow('Note title does not exist.'));
+
+    const similarNotes = filterNotes(title)
+
+    if (similarNotes.length === 0) {
+        return
+    }
+
+    console.log('Similar notes:');
+    similarNotes.forEach((note) => console.log('>', note.title))
+
 }
 
 module.exports = {
